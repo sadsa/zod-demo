@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchPokemon, Pokemon } from "./examples/03-type-inference";
+import { SearchForm, SearchFormData } from "./examples/05-react-hook-form";
 import "./App.css";
 
 function App() {
@@ -27,9 +28,15 @@ function App() {
     loadPokemon();
   }, [pokemonId]);
 
+  const onSubmit = (data: SearchFormData) => {
+    setPokemonId(data.pokemonId);
+  };
+
   return (
     <div className="container">
       <h1>Pokedex</h1>
+
+      <SearchForm onSubmit={onSubmit} loading={loading} />
 
       <div className="controls">
         <button
