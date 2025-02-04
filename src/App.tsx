@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPokemon, Pokemon } from "./examples/01-manual-validation";
+import { fetchPokemon, Pokemon } from "./examples/02-schema-validation";
 import "./App.css";
 
 function App() {
