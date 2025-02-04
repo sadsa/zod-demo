@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { fetchPokemon, Pokemon } from "./examples/01-manual-validation";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pokemonId, setPokemonId] = useState(1);
+  const [pokemon, setPokemon] = useState<null | Pokemon>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadPokemon() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await fetchPokemon(pokemonId);
+        setPokemon(data);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Failed to fetch Pokemon"
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadPokemon();
+  }, [pokemonId]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="container">
+      <h1>Pokedex</h1>
+
+      <div className="controls">
+        <button
+          onClick={() => setPokemonId((id) => Math.max(1, id - 1))}
+          disabled={pokemonId === 1 || loading}
+        >
+          Previous
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <span>Pokemon #{pokemonId}</span>
+        <button onClick={() => setPokemonId((id) => id + 1)} disabled={loading}>
+          Next
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="error">Error: {error}</p>}
+
+      {pokemon && !loading && !error && (
+        <div className="pokemon-card">
+          <h2>{pokemon.name}</h2>
+          <p>Height: {pokemon.height}</p>
+          <p>Weight: {pokemon.weight}</p>
+          <p>Types: {pokemon.types.map((t) => t.type.name).join(", ")}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
