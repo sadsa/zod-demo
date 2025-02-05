@@ -1,50 +1,73 @@
-# React + TypeScript + Vite
+# Zod Demo: Runtime Type Validation in JavaScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains examples on using Zod for runtime type validation in JavaScript/TypeScript applications. Each example is contained in its own branch for easy navigation and demonstration.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/zod-demo
+cd zod-demo
 
-## Expanding the ESLint configuration
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Start the development server
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📚 Examples
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Each example is in its own branch. Switch between them using `git checkout`:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. `01-manual-validation` - Manual API response validation
+
+   ```bash
+   git checkout 01-manual-validation
+   ```
+
+2. `02-schema-validation` - Apply Schema validation with Zod
+
+   ```bash
+   git checkout 02-schema-validation
+   ```
+
+3. `03-type-inference` - Type inference and schema composition
+
+   ```bash
+   git checkout 03-type-inference
+   ```
+
+4. `04-env-validation` - Environment variable validation
+
+   ```bash
+   git checkout 04-env-validation
+   ```
+
+5. `05-react-hook-form` - Integration with React Hook Form
+   ```bash
+   git checkout 05-react-hook-form
+   ```
+
+## 🛠️ Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- Zod
+- React Hook Form
+- Vitest (for testing)
+
+## 🤝 Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## 📄 License
+
+MIT
+
+## 🔗 Resources
+
+- [Zod Documentation](https://zod.dev)
+- [React Hook Form](https://react-hook-form.com)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
